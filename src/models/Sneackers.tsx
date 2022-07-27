@@ -6,6 +6,7 @@ import * as THREE from 'three';
 import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import { useThree } from '@react-three/fiber';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,6 +22,8 @@ type GLTFResult = GLTF & {
 
 export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>(null);
+  const { viewport } = useThree();
+  console.log(`🚀 ~ viewport`, viewport);
   const { nodes, materials } = useGLTF('/models/sneackers.glb') as GLTFResult;
   return (
     <group
@@ -28,7 +31,8 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
       {...props}
       dispose={null}
       position={[0, -1, 0]}
-      rotation={[Math.PI / 8, 0.5, 0]}
+      rotation={[Math.PI / 360, 0.8, 0.1]}
+      scale={viewport.width < 4.5 ? viewport.width * 0.2 : viewport.width * 0.1}
     >
       <mesh geometry={nodes.Obj02.geometry} material={materials['Sneackers']} />
       <mesh geometry={nodes.Obj01.geometry} material={materials['Sneackers']} />
