@@ -1,7 +1,6 @@
 import { proxy } from 'valtio';
 
 interface Store {
-  resetState();
   current: any;
   items: {
     Obj01: string;
@@ -11,6 +10,8 @@ interface Store {
   };
   changeCurrent(value: string | null);
   changeItemsColor(obj: string, value: string);
+  resetState();
+  randomColor();
 }
 
 const initialValue = {
@@ -34,6 +35,13 @@ const store: Store = proxy({
   resetState: () => {
     store.current = initialValue.current;
     store.items = { ...initialValue.items };
+  },
+  randomColor: () => {
+    console.log('click');
+    for (const key in store.items) {
+      const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+      store.items[key] = `#${randomColor}`;
+    }
   },
 });
 

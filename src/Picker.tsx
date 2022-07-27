@@ -5,7 +5,8 @@ import { HexColorPicker } from 'react-colorful';
 import './Picker.css';
 
 export const Picker = () => {
-  const { current, items, changeItemsColor, resetState } = useSnapshot(store);
+  const { current, items, changeItemsColor, resetState, randomColor } =
+    useSnapshot(store);
   return (
     <div className='picker'>
       <h2 className='picker__name'>
@@ -20,7 +21,7 @@ export const Picker = () => {
         <button type='button' className='btn' onClick={() => resetState()}>
           Reset
         </button>
-        <button type='button' className='btn'>
+        <button type='button' className='btn' onClick={() => randomColor()}>
           Random
         </button>
       </div>
