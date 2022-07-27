@@ -3,11 +3,12 @@
   display: flex;
   flex-direction: column;
   z-index: 1000;
-  left: 15%;
-  top: 20%;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
   color: white;
   align-items: center;
-  width: 300px;
+  width: fit-content;
   gap: 1rem;
   opacity: 0;
   animation: fadeIn;
@@ -18,6 +19,7 @@
 }
 .picker__hex {
   z-index: 1000;
+  width: 20px;
 }
 .picker__buttons {
   display: flex;
@@ -32,4 +34,27 @@
     rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   background-color: #e0562a;
   color: white;
+}
+.picker .react-colorful {
+  height: 20vh;
+  width: 60vw;
+  max-width: 300px;
+}
+@media only screen and (min-width: 1000px) {
+  .picker {
+    left: 15%;
+    top: 20%;
+    transform: 0;
+  }
+}
+@media only screen and (orientation: landscape) {
+  .picker {
+    top: 50%;
+    left: 5%;
+    transform: translate(0, -50%);
+  }
+  .picker .react-colorful {
+    height: 40vh;
+    max-width: 30vw;
+  }
 }
