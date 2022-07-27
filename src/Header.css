@@ -3,9 +3,12 @@
   /* left: 0 !important; */
   /* top: 0 !important; */
   /* transform: none !important; */
-  transform: none !important;
+  /* transform: none !important;
   left: 10% !important;
-  top: 20% !important;
+  top: 20% !important; */
+  top: 15% !important;
+  left: 30% !important;
+  transform: translate(-50%, -50%) !important;
 }
 .header > * {
   /* position: relative !important; */
@@ -51,5 +54,12 @@
       width: 700px;
       max-width: 700px;
     }
+  }
+}
+@media only screen and (orientation: landscape) {
+  .header {
+    top: 40% !important;
+    left: 5% !important;
+    transform: translate(0, -50%) !important;
   }
 }

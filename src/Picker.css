@@ -58,3 +58,6 @@
     max-width: 30vw;
   }
 }
+.picker__name {
+  font-size: calc(1vw + 1vh + 1vmin);
+}

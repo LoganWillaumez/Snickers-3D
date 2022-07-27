@@ -19,7 +19,7 @@ function App() {
   return (
     <div className='App'>
       <Picker />
-      <Canvas shadows camera={{ position: [0, 0, 5], fov: 60 }}>
+      <Canvas shadows camera={{ position: [0, 0, 5], fov: 60 }} linear>
         <ambientLight />
         <pointLight position={[2, 2, 2]} intensity={3} />
         {/* <axesHelper args={[10]} castShadow={false} /> */}

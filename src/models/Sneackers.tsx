@@ -5,25 +5,6 @@ import { GLTF } from 'three-stdlib';
 import { useThree } from '@react-three/fiber';
 import { proxy, useSnapshot } from 'valtio';
 import store from '../store';
-// interface stateType {
-//   current: { [key: string]: any } | null;
-//   items: {
-//     obj1: string;
-//     obj2: string;
-//     obj3: string;
-//     obj4: string;
-//   };
-// }
-
-// const state: stateType = proxy({
-//   current: null,
-//   items: {
-//     obj1: '#2F2C2F',
-//     obj2: '#992638',
-//     obj3: '#211E20',
-//     obj4: '#C7C9CB',
-//   },
-// });
 
 type GLTFResult = GLTF & {
   nodes: {
