@@ -10,7 +10,7 @@ export const Picker = () => {
   return (
     <div className='picker'>
       <h2 className='picker__name'>
-        {current !== null ? current : 'Select a part to color'}
+        {current !== null ? current : 'Select to color'}
       </h2>
       <HexColorPicker
         className='picker__hex'
@@ -23,6 +23,9 @@ export const Picker = () => {
         </button>
         <button type='button' className='btn' onClick={() => randomColor()}>
           Random
+        </button>
+        <button type='button' className='btn' onClick={() => randomColor()}>
+          Fav
         </button>
       </div>
     </div>
