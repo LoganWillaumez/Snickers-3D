@@ -1,0 +1,18 @@
+.picker {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+  left: 15%;
+  top: 20%;
+  color: white;
+  align-items: center;
+  width: 300px;
+  gap: 2rem;
+  opacity: 0;
+  animation: fadeIn;
+  animation-duration: 2s;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}

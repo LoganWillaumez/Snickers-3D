@@ -11,12 +11,14 @@ import {
   PresentationControls,
 } from '@react-three/drei';
 import { Header } from './Header';
+import React from 'react';
+import { Picker } from './Picker';
 
 function App() {
   return (
     <div className='App'>
+      <Picker />
       <Canvas shadows camera={{ position: [0, 0, 5], fov: 60 }}>
-        <Header />
         <ambientLight />
         <pointLight position={[2, 2, 2]} intensity={3} />
         {/* <axesHelper args={[10]} castShadow={false} /> */}
@@ -38,6 +40,7 @@ function App() {
             floatingRange={[1, 10]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
           >
             <Suspense fallback={null}>
+              <Header />
               <Sneackers />
             </Suspense>
           </Float>
@@ -52,6 +55,7 @@ function App() {
           color='#000000'
         />
       </Canvas>
+
       <Loader />
     </div>
   );
