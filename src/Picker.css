@@ -2,17 +2,34 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  z-index: 5;
+  z-index: 1000;
   left: 15%;
   top: 20%;
   color: white;
   align-items: center;
   width: 300px;
-  gap: 2rem;
+  gap: 1rem;
   opacity: 0;
   animation: fadeIn;
   animation-duration: 2s;
   animation-delay: 5s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
+}
+.picker__hex {
+  z-index: 1000;
+}
+.picker__buttons {
+  display: flex;
+  gap: 1rem;
+}
+.btn {
+  border: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  background-color: #e0562a;
+  color: white;
 }

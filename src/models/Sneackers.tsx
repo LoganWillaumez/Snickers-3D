@@ -69,24 +69,24 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
       scale={viewport.width < 4.5 ? viewport.width * 0.2 : viewport.width * 0.1}
     >
       <mesh
-        geometry={nodes.Obj02.geometry}
+        geometry={nodes.Obj01.geometry}
         material={materials.Obj01}
-        material-color={snap.items.obj1}
+        material-color={snap.items.Obj01}
       ></mesh>
       <mesh
-        geometry={nodes.Obj01.geometry}
+        geometry={nodes.Obj02.geometry}
         material={materials.Obj02}
-        material-color={snap.items.obj2}
+        material-color={snap.items.Obj02}
       />
       <mesh
         geometry={nodes.Obj03.geometry}
         material={materials.Obj03}
-        material-color={snap.items.obj3}
+        material-color={snap.items.Obj03}
       />
       <mesh
         geometry={nodes.Obj04.geometry}
         material={materials.Obj04}
-        material-color={snap.items.obj4}
+        material-color={snap.items.Obj04}
       />
     </group>
   );

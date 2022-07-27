@@ -1,30 +1,39 @@
 import { proxy } from 'valtio';
 
 interface Store {
+  resetState();
   current: any;
   items: {
-    obj1: string;
-    obj2: string;
-    obj3: string;
-    obj4: string;
+    Obj01: string;
+    Obj02: string;
+    Obj03: string;
+    Obj04: string;
   };
-  changeCurrent(name: any);
+  changeCurrent(value: string | null);
   changeItemsColor(obj: string, value: string);
 }
 
-const store: Store = proxy({
+const initialValue = {
   current: null,
   items: {
-    obj1: '#2F2C2F',
-    obj2: '#992638',
-    obj3: '#211E20',
-    obj4: '#C7C9CB',
+    Obj01: '#2F2C2F',
+    Obj02: '#992638',
+    Obj03: '#211E20',
+    Obj04: '#C7C9CB',
   },
-  changeCurrent: (value) => {
+};
+
+const store: Store = proxy({
+  ...initialValue,
+  changeCurrent: (value: string | null) => {
     store.current = value;
   },
   changeItemsColor: (obj: string, value: string) => {
     store.items[obj] = value;
+  },
+  resetState: () => {
+    store.current = initialValue.current;
+    store.items = { ...initialValue.items };
   },
 });
 

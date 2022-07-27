@@ -5,13 +5,25 @@ import { HexColorPicker } from 'react-colorful';
 import './Picker.css';
 
 export const Picker = () => {
-  const snap = useSnapshot(store);
+  const { current, items, changeItemsColor, resetState } = useSnapshot(store);
   return (
     <div className='picker'>
       <h2 className='picker__name'>
-        {snap.current !== null ? snap.current : 'Select a part to color'}
+        {current !== null ? current : 'Select a part to color'}
       </h2>
-      <HexColorPicker className='picker__hex' />
+      <HexColorPicker
+        className='picker__hex'
+        color={items[current]}
+        onChange={(color) => changeItemsColor(current, color)}
+      />
+      <div className='picker__buttons'>
+        <button type='button' className='btn' onClick={() => resetState()}>
+          Reset
+        </button>
+        <button type='button' className='btn'>
+          Random
+        </button>
+      </div>
     </div>
   );
 };
