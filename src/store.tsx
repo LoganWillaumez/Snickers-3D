@@ -8,10 +8,13 @@ interface Store {
     Obj03: string;
     Obj04: string;
   };
+  favourites: any;
   changeCurrent(value: string | null);
-  changeItemsColor(obj: string, value: string);
+  changeItemsColor(obj: string | Object, value?: string | undefined);
   resetState();
   randomColor();
+  addFavourites(fav: object);
+  resetFavourites();
 }
 
 const initialValue = {
@@ -22,6 +25,7 @@ const initialValue = {
     Obj03: '#211E20',
     Obj04: '#C7C9CB',
   },
+  favourites: [],
 };
 
 const store: Store = proxy({
@@ -29,8 +33,19 @@ const store: Store = proxy({
   changeCurrent: (value: string | null) => {
     store.current = value;
   },
-  changeItemsColor: (obj: string, value: string) => {
-    store.items[obj] = value;
+  changeItemsColor: (obj: string | Object, value?: string | undefined) => {
+    if (typeof obj === 'string') {
+      store.items[obj] = value;
+    } else {
+      for (const key in obj) {
+        store.items[key] = obj[key];
+      }
+    }
+  },
+  addFavourites: (fav: any) => {
+    // if (fav !== []) {
+    store.favourites = fav;
+    // }
   },
   resetState: () => {
     store.current = initialValue.current;
@@ -39,10 +54,13 @@ const store: Store = proxy({
   randomColor: () => {
     console.log('click');
     for (const key in store.items) {
-      const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-      store.items[key] = `#${randomColor}`;
+      const n = (Math.random() * 0xfffff * 1000000).toString(16);
+      const randomColor = '#' + n.slice(0, 6);
+      store.items[key] = randomColor;
     }
   },
+  resetFavourites: () => {
+    store.favourites = [];
+  },
 });
-
 export default store;
