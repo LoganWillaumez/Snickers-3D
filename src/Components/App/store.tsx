@@ -3,18 +3,15 @@ import { proxy } from 'valtio';
 interface Store {
   current: any;
   items: {
-    Obj01: string;
-    Obj02: string;
-    Obj03: string;
-    Obj04: string;
+    [key: string]: any;
   };
   favourites: any;
-  changeCurrent(value: string | null);
-  changeItemsColor(obj: string | Object, value?: string | undefined);
-  resetState();
-  randomColor();
-  addFavourites(fav: object);
-  resetFavourites();
+  changeCurrent(value: string | null): void;
+  changeItemsColor(obj: string | object, value?: string | undefined): void;
+  resetState(): void;
+  randomColor(): void;
+  addFavourites(fav: object): void;
+  resetFavourites(): void;
 }
 
 const initialValue = {
@@ -30,33 +27,30 @@ const initialValue = {
 
 const store: Store = proxy({
   ...initialValue,
-  changeCurrent: (value: string | null) => {
+  changeCurrent: (value) => {
     store.current = value;
   },
-  changeItemsColor: (obj: string | Object, value?: string | undefined) => {
+  changeItemsColor: (obj, value) => {
     if (typeof obj === 'string') {
       store.items[obj] = value;
     } else {
       for (const key in obj) {
-        store.items[key] = obj[key];
+        store.items[key] = obj[key]; //! Chec why type problem
       }
     }
   },
   addFavourites: (fav: any) => {
-    // if (fav !== []) {
     store.favourites = fav;
-    // }
   },
   resetState: () => {
     store.current = initialValue.current;
     store.items = { ...initialValue.items };
   },
   randomColor: () => {
-    console.log('click');
     for (const key in store.items) {
       const n = (Math.random() * 0xfffff * 1000000).toString(16);
       const randomColor = '#' + n.slice(0, 6);
-      store.items[key] = randomColor;
+      store.items[key as keyof Store['items']] = randomColor;
     }
   },
   resetFavourites: () => {

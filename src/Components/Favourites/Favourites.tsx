@@ -1,9 +1,7 @@
-import { Html } from '@react-three/drei';
-import React, { useState } from 'react';
-import { useLocalstorageState } from 'rooks';
-import { proxy, useSnapshot } from 'valtio';
+import { useState } from 'react';
+import { useSnapshot } from 'valtio';
 import './Favourites.css';
-import store from './store';
+import store from '../../Components/App/store';
 export const Favourites = ({ setFav }: { setFav: Function }) => {
   const { favourites, resetFavourites, changeItemsColor } = useSnapshot(store);
   const [click, setClick] = useState(false);

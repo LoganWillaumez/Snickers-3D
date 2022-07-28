@@ -1,28 +1,26 @@
 import React, { useEffect } from 'react';
-import { proxy, useSnapshot } from 'valtio';
-import store from './store';
+import { useSnapshot } from 'valtio';
+import store from '../App/store';
 import { HexColorPicker } from 'react-colorful';
 import './Picker.css';
-import { useLocalstorageState } from 'rooks';
 
 export const Picker = ({
   fav,
   setFav,
 }: {
-  fav: { [key: string]: any };
+  fav: [{ [key: string]: any }];
   setFav: Function;
 }) => {
   const {
     current,
     items,
-    favourites,
     changeItemsColor,
     resetState,
     randomColor,
     addFavourites,
   } = useSnapshot(store);
   useEffect(() => {
-    if (fav.length !== 0) addFavourites(fav);
+    addFavourites(fav);
   }, [fav]);
   return (
     <div className='picker'>
@@ -45,12 +43,6 @@ export const Picker = ({
           type='button'
           className='btn'
           onClick={() => {
-            // const nameFav = `fav0${favourites.length}`;
-            // const newObj = {};
-            // newObj[nameFav] = items;
-            const result = Object.entries(items).map(([key, value]) => ({
-              [key]: value,
-            }));
             const final: any = [...fav, { ...items }];
             setFav(final);
           }}

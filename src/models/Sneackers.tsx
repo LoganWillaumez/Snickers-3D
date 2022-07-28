@@ -1,10 +1,10 @@
 import * as THREE from 'three';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import { useThree } from '@react-three/fiber';
-import { proxy, useSnapshot } from 'valtio';
-import store from '../store';
+import { useSnapshot } from 'valtio';
+import store from '../Components/App/store';
 
 type GLTFResult = GLTF & {
   nodes: {
