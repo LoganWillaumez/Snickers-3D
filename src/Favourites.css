@@ -1,0 +1,110 @@
+.favourites {
+  z-index: 1100;
+  height: 50px;
+  width: 300px;
+  position: fixed;
+  text-align: center;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  bottom: 5vh;
+  max-width: 500px;
+  right: -260px;
+  transition: all 250ms ease-in-out;
+}
+.favourites--active {
+  right: 0;
+}
+.favourites__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.favourites__icon--arrow {
+  font-size: 30px;
+  transition: all 350ms ease-in-out;
+}
+.favourites__icon--cross {
+  font-size: 25px;
+}
+.favourites__containter {
+  margin-left: 5rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  gap: 1rem;
+  height: 50px;
+}
+.favourites__colors {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  height: 40px;
+}
+.favourites__gradient {
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.btn--disable {
+  all: unset;
+}
+.btn--arrow {
+  transform-origin: center;
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 30px;
+  width: 30px;
+}
+.favourites--active .favourites__icon--arrow {
+  transform: rotate(180deg);
+}
+
+.btn--cross {
+  position: absolute;
+  left: 3.5rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 27px;
+  width: 30px;
+}
+@media only screen and (min-width: 800px) {
+  .favourites {
+    width: 200px;
+    height: 400px;
+    right: -170px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  .favourites--active {
+    right: 0;
+  }
+  .btn--arrow {
+    left: 1rem;
+  }
+  .btn--cross {
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: auto;
+    bottom: 1rem;
+  }
+  .favourites__containter {
+    margin-left: 2rem;
+    padding-top: 2rem;
+    height: 350px;
+    align-items: flex-start;
+    overflow: auto;
+  }
+  .favourites__colors {
+    flex-wrap: wrap;
+    height: fit-content;
+  }
+}

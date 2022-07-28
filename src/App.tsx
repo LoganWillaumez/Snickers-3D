@@ -1,10 +1,15 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import './App.css';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import { Mesh } from 'three';
 import { useWindowSize } from 'rooks';
+import { proxy, useSnapshot } from 'valtio';
+import store from './store';
+
+import { Picker } from './Picker';
 import Sneackers from './models/Sneackers';
+import { useLocalstorageState } from 'rooks';
 import {
   ContactShadows,
   Float,
@@ -13,16 +18,19 @@ import {
 } from '@react-three/drei';
 import { Header } from './Header';
 import React from 'react';
-import { Picker } from './Picker';
+import { Favourites } from './Favourites';
 function App() {
+  const [fav, setFav] = useLocalstorageState('favourites', []);
+  const { current, items, favourites, changeItemsColor, addFavourites } =
+    useSnapshot(store);
   const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
+
   return (
     <div className='App'>
-      <Picker />
+      <Picker fav={fav} setFav={setFav} />
       <Canvas shadows camera={{ position: [0, 0, 5], fov: 60 }} linear>
         <ambientLight />
         <pointLight position={[2, 2, 2]} intensity={3} />
-        {/* <axesHelper args={[10]} castShadow={false} /> */}
         <group
           position={[
             innerHeight! < innerWidth! ? 1.5 : 0,
@@ -68,7 +76,7 @@ function App() {
           color='#000000'
         />
       </Canvas>
-
+      <Favourites setFav={setFav} />
       <Loader />
     </div>
   );
