@@ -2,9 +2,6 @@ import { Suspense } from 'react';
 import './App.css';
 import { Canvas } from '@react-three/fiber';
 import { useWindowSize } from 'rooks';
-import { useSnapshot } from 'valtio';
-import store from './store';
-
 import { Picker } from '../../Components/Picker/Picker';
 import Sneackers from '../../models/Sneackers';
 import { useLocalstorageState } from 'rooks';
@@ -18,9 +15,8 @@ import { Header } from '../../Components/Header/Header';
 import { Favourites } from '../../Components/Favourites/Favourites';
 function App() {
   const [fav, setFav] = useLocalstorageState('favourites', []);
-  const { current, items, favourites, changeItemsColor, addFavourites } =
-    useSnapshot(store);
-  const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
+
+  const { innerWidth, innerHeight } = useWindowSize();
 
   return (
     <div className='App'>

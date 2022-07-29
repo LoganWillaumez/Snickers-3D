@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSnapshot } from 'valtio';
 import store from '../App/store';
 import { HexColorPicker } from 'react-colorful';
@@ -8,19 +8,13 @@ export const Picker = ({
   fav,
   setFav,
 }: {
-  fav: [{ [key: string]: any }];
+  fav: [{ [key: string]: any }] | never[];
   setFav: Function;
 }) => {
-  const {
-    current,
-    items,
-    changeItemsColor,
-    resetState,
-    randomColor,
-    addFavourites,
-  } = useSnapshot(store);
+  const { current, items, resetState, randomColor, changeStore } =
+    useSnapshot(store);
   useEffect(() => {
-    addFavourites(fav);
+    changeStore('favourites', fav);
   }, [fav]);
   return (
     <div className='picker'>
@@ -30,7 +24,9 @@ export const Picker = ({
       <HexColorPicker
         className='picker__hex'
         color={items[current]}
-        onChange={(color) => changeItemsColor(current, color)}
+        onChange={(color) => {
+          changeStore('items', color, current);
+        }}
       />
       <div className='picker__buttons'>
         <button type='button' className='btn' onClick={() => resetState()}>

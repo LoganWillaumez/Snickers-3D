@@ -6,11 +6,9 @@ interface Store {
     [key: string]: any;
   };
   favourites: any;
-  changeCurrent(value: string | null): void;
-  changeItemsColor(obj: string | object, value?: string | undefined): void;
+  changeStore(key: keyof Store, value: any, nested?: string | undefined): void;
   resetState(): void;
   randomColor(): void;
-  addFavourites(fav: object): void;
   resetFavourites(): void;
 }
 
@@ -27,20 +25,18 @@ const initialValue = {
 
 const store: Store = proxy({
   ...initialValue,
-  changeCurrent: (value) => {
-    store.current = value;
-  },
-  changeItemsColor: (obj, value) => {
-    if (typeof obj === 'string') {
-      store.items[obj] = value;
+  /**
+   * Change the value of the store. Nested parameter is optionnal.
+   * @param {keyof Store} key
+   * @param {any} value
+   * @param {string | undefined} nested
+   */
+  changeStore: (key, value, nested) => {
+    if (nested) {
+      store[key][nested] = value;
     } else {
-      for (const key in obj) {
-        store.items[key] = obj[key]; //! Chec why type problem
-      }
+      store[key] = value;
     }
-  },
-  addFavourites: (fav: any) => {
-    store.favourites = fav;
   },
   resetState: () => {
     store.current = initialValue.current;
