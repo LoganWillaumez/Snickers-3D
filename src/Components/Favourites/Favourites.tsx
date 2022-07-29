@@ -1,11 +1,9 @@
-import { Html } from '@react-three/drei';
-import React, { useState } from 'react';
-import { useLocalstorageState } from 'rooks';
-import { proxy, useSnapshot } from 'valtio';
+import { useState } from 'react';
+import { useSnapshot } from 'valtio';
 import './Favourites.css';
-import store from './store';
+import store from '../../Components/App/store';
 export const Favourites = ({ setFav }: { setFav: Function }) => {
-  const { favourites, resetFavourites, changeItemsColor } = useSnapshot(store);
+  const { favourites, changeStore } = useSnapshot(store);
   const [click, setClick] = useState(false);
   const toggleClick = () => {
     setClick(!click);
@@ -30,7 +28,7 @@ export const Favourites = ({ setFav }: { setFav: Function }) => {
                     className='btn--disable'
                     key={favourite.Obj01 + i}
                     onClick={() => {
-                      changeItemsColor(favourite);
+                      changeStore('items', favourite);
                     }}
                   >
                     <div
@@ -60,7 +58,7 @@ export const Favourites = ({ setFav }: { setFav: Function }) => {
         className='btn btn--cross btn--disable'
         onClick={() => {
           setFav([]);
-          resetFavourites();
+          changeStore('favourites', []);
         }}
       >
         <i className='favourites__icon--cross fa-solid fa-x'></i>
