@@ -1,0 +1,43 @@
+.header {
+  top: 15% !important;
+  left: 30% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.header__container {
+  opacity: 0;
+  animation-name: fadeInDown, fadeOutLeft;
+  animation-duration: 2s, 1s;
+  animation-delay: 0s, 3s;
+  animation-fill-mode: forwards, forwards;
+  animation-timing-function: ease-in-out, ease-out;
+}
+.header__logo {
+  width: 20vw;
+  filter: brightness(0) invert(1);
+}
+.header__title {
+  margin: 0;
+  font-size: calc(1vw + 1vh + 3vmin);
+  width: 200px;
+  max-width: 200px;
+}
+@media only screen and (min-width: 600px) {
+  .header__title {
+    width: 500px;
+    max-width: 500px;
+  }
+  @media only screen and (min-width: 1000px) {
+    .header__title {
+      width: 700px;
+      max-width: 700px;
+    }
+  }
+}
+@media only screen and (orientation: landscape) {
+  .header {
+    top: 40% !important;
+    left: 5% !important;
+    transform: translate(0, -50%) !important;
+  }
+}
